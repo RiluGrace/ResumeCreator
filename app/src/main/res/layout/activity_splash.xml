@@ -9,4 +9,14 @@
     android:background="#305D02"
     tools:context=".SplashActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Resume Creator"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
 </RelativeLayout>
