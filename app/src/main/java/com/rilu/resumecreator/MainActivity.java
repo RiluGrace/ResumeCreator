@@ -1,7 +1,10 @@
 package com.rilu.resumecreator;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.gson.Gson;
+import com.rilu.resumecreator.Fragments.PersonalInfoFragment;
+import com.rilu.resumecreator.PojoClass.Resume;
+import com.rilu.resumecreator.SubClasses.ResumeFragment;
+
 public class MainActivity extends AppCompatActivity {
 
-
+    private Resume resume;
     private String currentTitle;
+    private String STATE_CURRENT_TITLE = "current title";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +32,34 @@ public class MainActivity extends AppCompatActivity {
         setupLayout();
 
 
+        Gson gson = new Gson();
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String json = mPrefs.getString("SerializableObject", "");
+        if (json.isEmpty())
+            resume = Resume.createNewResume();
+        else
+            resume = gson.fromJson(json, Resume.class);
+
+        if (savedInstanceState == null) {
+            openFragment(PersonalInfoFragment.newInstance(resume));
+            currentTitle = getString(R.string.action_personal_info);
+        } else
+            currentTitle = savedInstanceState.getString(STATE_CURRENT_TITLE);
+
+        getSupportActionBar().setTitle(currentTitle);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(resume);
+        prefsEditor.putString("SerializableObject", json);
+        prefsEditor.commit();
+    }
+
 
     private void setupLayout() {
 //        Toolbar toolbar = findViewById(R.id.toolbar);
@@ -65,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean handleMenuItem(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_personal_info:
-                //openFragment(PersonalInfoFragment.newInstance(resume));
+                openFragment(PersonalInfoFragment.newInstance(resume));
                 break;
             case R.id.action_essentials:
                // openFragment(EssentialsFragment.newInstance(resume));
@@ -86,5 +122,11 @@ public class MainActivity extends AppCompatActivity {
                 return false;
         }
         return true;
+    }
+
+    private void openFragment(ResumeFragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, fragment);
+        fragmentTransaction.commit();
     }
 }

@@ -12,7 +12,7 @@ import com.rilu.resumecreator.PojoClass.Resume;
 import com.rilu.resumecreator.R;
 
 
-public class ResumeFragment extends Fragment {
+abstract public class ResumeFragment extends Fragment {
 
     public static final String ARGUMENT_RESUME = "resume";
 

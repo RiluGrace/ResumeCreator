@@ -15,7 +15,29 @@ import com.rilu.resumecreator.PojoClass.Resume;
 import com.rilu.resumecreator.R;
 import com.rilu.resumecreator.SubClasses.ResumeFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class PersonalInfoFragment extends ResumeFragment {
+
+    @BindView(R.id.personal_name)
+    EditText P_Name;
+
+    @BindView(R.id.personal_email)
+    EditText P_Email;
+
+    @BindView(R.id.personal_job)
+    EditText P_Job;
+
+    @BindView(R.id.personal_address1)
+    EditText P_Addr;
+
+    @BindView(R.id.personal_address2)
+    EditText P_Address;
+
+    @BindView(R.id.personal_phone)
+    EditText P_No;
+
 
 
     public static ResumeFragment newInstance(Resume resume) {
@@ -27,18 +49,22 @@ public class PersonalInfoFragment extends ResumeFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_personal_info, container, false);
+
+        // butterknife..
+        ButterKnife.bind(this,root);
 
         final PersonalInfo personalInfo = getResume().personalInfo;
 
-        EditText nameEditText = root.findViewById(R.id.input_name);
-        nameEditText.setText(personalInfo.getName());
-        nameEditText.addTextChangedListener(new TextWatcher() {
+
+
+        P_Name.setText(personalInfo.getName());
+        P_Name.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                Log.d("TC", "beforeTC " + s.toString() + " " + s.subSequence(start, start + count).toString());
             }
 
             @Override
@@ -52,10 +78,26 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
+        P_Email.setText(personalInfo.getEmail());
+        P_Email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        EditText jobTitleEditText = root.findViewById(R.id.input_job_title);
-        jobTitleEditText.setText(personalInfo.getJobTitle());
-        jobTitleEditText.addTextChangedListener(new TextWatcher()
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                personalInfo.setEmail(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        P_Job.setText(personalInfo.getJobTitle());
+        P_Job.addTextChangedListener(new TextWatcher()
         {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -73,9 +115,8 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
-        EditText address1EditText = root.findViewById(R.id.input_address1);
-        address1EditText.setText(personalInfo.getAddressLine1());
-        address1EditText.addTextChangedListener(new TextWatcher() {
+        P_Addr.setText(personalInfo.getAddressLine1());
+        P_Addr.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -92,9 +133,8 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
-        EditText address2EditText = root.findViewById(R.id.input_address2);
-        address2EditText.setText(personalInfo.getAddressLine2());
-        address2EditText.addTextChangedListener(new TextWatcher() {
+        P_Address.setText(personalInfo.getAddressLine2());
+        P_Address.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -111,9 +151,8 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
-        EditText phoneEditText = root.findViewById(R.id.input_phone);
-        phoneEditText.setText(personalInfo.getPhone());
-        phoneEditText.addTextChangedListener(new TextWatcher() {
+        P_No.setText(personalInfo.getPhone());
+        P_No.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -130,24 +169,7 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
-        EditText emailEditText = root.findViewById(R.id.input_email);
-        emailEditText.setText(personalInfo.getEmail());
-        emailEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                personalInfo.setEmail(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         return root;
     }
 }
