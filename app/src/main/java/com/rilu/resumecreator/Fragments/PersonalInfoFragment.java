@@ -57,8 +57,7 @@ public class PersonalInfoFragment extends ResumeFragment {
 
         final PersonalInfo personalInfo = getResume().personalInfo;
 
-
-
+       // EditText P_Name = root.findViewById(R.id.personal_name);
         P_Name.setText(personalInfo.getName());
         P_Name.addTextChangedListener(new TextWatcher() {
 
@@ -78,6 +77,7 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
+      //  EditText P_Email = root.findViewById(R.id.personal_email);
         P_Email.setText(personalInfo.getEmail());
         P_Email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,6 +96,7 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
+       // EditText P_Job = root.findViewById(R.id.personal_job);
         P_Job.setText(personalInfo.getJobTitle());
         P_Job.addTextChangedListener(new TextWatcher()
         {
@@ -115,6 +116,7 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
+      //  EditText P_Addr = root.findViewById(R.id.personal_address1);
         P_Addr.setText(personalInfo.getAddressLine1());
         P_Addr.addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,6 +135,8 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
+
+      //  EditText P_Address = root.findViewById(R.id.personal_address2);
         P_Address.setText(personalInfo.getAddressLine2());
         P_Address.addTextChangedListener(new TextWatcher() {
             @Override
@@ -151,6 +155,8 @@ public class PersonalInfoFragment extends ResumeFragment {
             }
         });
 
+
+       // EditText P_No = root.findViewById(R.id.personal_phone);
         P_No.setText(personalInfo.getPhone());
         P_No.addTextChangedListener(new TextWatcher() {
             @Override
