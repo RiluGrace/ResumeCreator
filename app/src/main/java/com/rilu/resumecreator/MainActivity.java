@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.rilu.resumecreator.Fragments.EducationFragment;
 import com.rilu.resumecreator.Fragments.PersonalInfoFragment;
 import com.rilu.resumecreator.PojoClass.Resume;
 import com.rilu.resumecreator.SubClasses.ResumeFragment;
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
               //  openFragment(ProjectsFragment.newInstance(resume));
                 break;
             case R.id.action_education:
-              //  openFragment(EducationFragment.newInstance(resume));
+                openFragment(EducationFragment.newInstance(resume));
                 break;
             case R.id.action_experience:
                // openFragment(ExperienceFragment.newInstance(resume));

@@ -9,9 +9,9 @@ import java.util.List;
 public class Resume  implements Parcelable {
 
     public PersonalInfo personalInfo;
- /*   public List<Project> projects;
-    public List<School> schools;
-    public List<Experience> experience;*/
+    public List<Education> education;
+//    public List<School> schools;
+//    public List<Experience> experience;
     public String languages;
     public String skills;
 
@@ -21,9 +21,9 @@ public class Resume  implements Parcelable {
 
     protected Resume(Parcel in) {
         personalInfo = in.readParcelable(PersonalInfo.class.getClassLoader());
-      /*  projects = in.createTypedArrayList(Project.CREATOR);
-        schools = in.createTypedArrayList(School.CREATOR);
-        experience = in.createTypedArrayList(Experience.CREATOR);*/
+        education = in.createTypedArrayList(Education.CREATOR);
+//        schools = in.createTypedArrayList(School.CREATOR);
+//        experience = in.createTypedArrayList(Experience.CREATOR);
         languages = in.readString();
         skills = in.readString();
     }
@@ -43,9 +43,9 @@ public class Resume  implements Parcelable {
     static public Resume createNewResume() {
         Resume resume = new Resume();
         resume.personalInfo = new PersonalInfo();
-       /* resume.schools = new ArrayList<>();
-        resume.experience = new ArrayList<>();
-        resume.projects = new ArrayList<>();*/
+        resume.education = new ArrayList<>();
+//        resume.experience = new ArrayList<>();
+//        resume.projects = new ArrayList<>();
         resume.languages = "";
         resume.skills = "";
         return resume;
@@ -59,9 +59,9 @@ public class Resume  implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(personalInfo, flags);
-     /*   dest.writeTypedList(projects);
-        dest.writeTypedList(schools);
-        dest.writeTypedList(experience);*/
+        dest.writeTypedList(education);
+//        dest.writeTypedList(schools);
+//        dest.writeTypedList(experience);
         dest.writeString(languages);
         dest.writeString(skills);
     }
