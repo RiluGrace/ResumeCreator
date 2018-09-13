@@ -16,6 +16,9 @@ import com.rilu.resumecreator.R;
 
 import com.rilu.resumecreator.PojoClass.ResumeEvent;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class EditActivity extends AppCompatActivity {
     public static final String EXTRA_TYPE = "type";
     public static final String TYPE_PROJECT = "project";
@@ -33,22 +36,29 @@ public class EditActivity extends AppCompatActivity {
 
     boolean subtitleEnabled = true;
 
-    EditText titleEditText;
-    EditText detailEditText;
-    EditText subtitleEditText;
-    EditText descriptionEditText;
+   // @BindView(R.id.input_institute)
+    EditText institute1;
 
-    TextInputLayout titleEditTextLayout;
-    TextInputLayout detailEditTextLayout;
-    TextInputLayout subtitleEditTextLayout;
-    TextInputLayout descriptionEditTextLayout;
+   // @BindView(R.id.input_course)
+    EditText course1;
+
+ //   @BindView(R.id.input_cgpa)
+    EditText cgpa1;
+
+ //   @BindView(R.id.input_year)
+    EditText year1;
+
+    TextInputLayout institute2;
+    TextInputLayout course2;
+    TextInputLayout cgpa2;
+    TextInputLayout year2;
 
     public static Intent setData(Intent intent, int id, ResumeEvent resumeEvent) {
         intent.putExtra(FIELD_ID, id);
-        intent.putExtra(FIELD_INSTITUTE, resumeEvent.getInstitute());
-        intent.putExtra(FIELD_COURSE, resumeEvent.getCourse());
-        intent.putExtra(FIELD_CGPA, resumeEvent.getCgpa());
-        intent.putExtra(FIELD_YEAR, resumeEvent.getYear());
+        intent.putExtra(FIELD_INSTITUTE, resumeEvent.getTitle());
+        intent.putExtra(FIELD_COURSE, resumeEvent.getDetail());
+        intent.putExtra(FIELD_CGPA, resumeEvent.getSubtitle());
+        intent.putExtra(FIELD_YEAR, resumeEvent.getPassYear());
         return intent;
     }
 
@@ -81,6 +91,9 @@ public class EditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ButterKnife.bind(this);
+
         Intent intent = getIntent();
         switch (intent.getStringExtra(EXTRA_TYPE)) {
             case TYPE_PROJECT:
@@ -97,19 +110,19 @@ public class EditActivity extends AppCompatActivity {
                 getSupportActionBar().setTitle("Experience");
                 break;
         }
-        titleEditText = findViewById(R.id.input_institute);
-        detailEditText = findViewById(R.id.input_course);
-        subtitleEditText = findViewById(R.id.input_cgpa);
-        descriptionEditText = findViewById(R.id.input_year);
+        institute1 = findViewById(R.id.input_institute);
+        course1 = findViewById(R.id.input_course);
+        cgpa1 = findViewById(R.id.input_cgpa);
+        year1 = findViewById(R.id.input_year);
+//
+        institute2 = findViewById(R.id.input_layout_institute);
+        course2 = findViewById(R.id.input_layout_course);
+        cgpa2 = findViewById(R.id.input_layout_cgpa);
+        year2 = findViewById(R.id.input_layout_year);
 
-        titleEditTextLayout = findViewById(R.id.input_layout_institute);
-        detailEditTextLayout = findViewById(R.id.input_layout_course);
-        subtitleEditTextLayout = findViewById(R.id.input_layout_cgpa);
-        descriptionEditTextLayout = findViewById(R.id.input_layout_year);
 
 
-
-        titleEditText.addTextChangedListener(new TextWatcher() {
+        institute1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -125,7 +138,7 @@ public class EditActivity extends AppCompatActivity {
 
             }
         });
-        detailEditText.addTextChangedListener(new TextWatcher() {
+        course1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -141,7 +154,7 @@ public class EditActivity extends AppCompatActivity {
 
             }
         });
-        subtitleEditText.addTextChangedListener(new TextWatcher() {
+        cgpa1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -157,7 +170,7 @@ public class EditActivity extends AppCompatActivity {
 
             }
         });
-        descriptionEditText.addTextChangedListener(new TextWatcher() {
+        year1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -179,10 +192,10 @@ public class EditActivity extends AppCompatActivity {
             course = intent.getStringExtra(FIELD_COURSE);
             cgpa = intent.getStringExtra(FIELD_CGPA);
             year = intent.getStringExtra(FIELD_YEAR);
-            titleEditText.setText(institute);
-            detailEditText.setText(course);
-            subtitleEditText.setText(cgpa);
-            descriptionEditText.setText(year);
+            institute1.setText(institute);
+            course1.setText(course);
+            cgpa1.setText(cgpa);
+            year1.setText(year);
         }
     }
 
@@ -209,20 +222,20 @@ public class EditActivity extends AppCompatActivity {
 
     private boolean validInput() {
         boolean result = true;
-        if (TextUtils.isEmpty(titleEditText.getText())) {
-            titleEditTextLayout.setError("This field is required");
+        if (TextUtils.isEmpty(institute1.getText())) {
+           institute2.setError("This field is required");
             result = false;
         }
-        if (TextUtils.isEmpty(detailEditText.getText())) {
-            detailEditTextLayout.setError("This field is required");
+        if (TextUtils.isEmpty(course1.getText())) {
+           course2.setError("This field is required");
             result = false;
         }
-        if (TextUtils.isEmpty(descriptionEditText.getText())) {
-            descriptionEditTextLayout.setError("This field is required");
+        if (TextUtils.isEmpty(cgpa1.getText())) {
+             cgpa2.setError("This field is required");
             result = false;
         }
-        if (subtitleEnabled && TextUtils.isEmpty(subtitleEditText.getText())) {
-            subtitleEditTextLayout.setError("This field is required");
+        if (subtitleEnabled && TextUtils.isEmpty(year1.getText())) {
+           year2.setError("This field is required");
             result = false;
         }
         return result;

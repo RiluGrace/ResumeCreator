@@ -74,34 +74,37 @@ public class ResumeEvent  implements Parcelable {
 //        this.toDate = resumeEvent.toDate;
     }
 
-    public String getInstitute() {
-        return institute;
+
+
+
+    public String getTitle() { return institute; }
+
+    public void setTitle(String title) {
+        this.institute = title;
     }
 
-    public void setInstitute(String institute) {
-        this.institute = institute;
+    public String getDetail() {
+        return course;
     }
 
-    public String getCourse() { return course; }
-
-    public void setCourse(String course) {
-        this.course = course;
+    public void setDetail(String detail) {
+        this.course = detail;
     }
 
-    public String getCgpa() {
+    public String getSubtitle() {
         return cgpa;
     }
 
-    public void setCgpa(String cgpa) {
-        this.cgpa = cgpa;
+    public void setSubtitle(String subtitle) {
+        this.cgpa = subtitle;
     }
 
-    public String getYear() {
+    public String getPassYear() {
         return year;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setPassYear(String passYear) {
+        this.year = passYear;
     }
 
 //    public Date getFromDate() {

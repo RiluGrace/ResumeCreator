@@ -22,34 +22,37 @@ public class Education extends ResumeEvent {
         super(event);
     }
 
+
     public String getInstitute() {
-        return getInstitute();
+        return getTitle();
     }
 
-    public void setInstitute(String institute) {
-        setInstitute(institute);
+    public void setInstitute(String school) {
+        setTitle(school);
     }
 
     public String getCourse() {
-        return getCourse();
+        return getDetail();
     }
 
-    public void setCourse(String course) {
-        setCourse(course);
+    public void setCourse(String location) {
+        setDetail(location);
     }
 
-    public String getCgpa() { return getCgpa(); }
+    public String getCgpa() {
+        return getSubtitle();
+    }
 
-    public void setCgpa(String cgpa) {
-        setCgpa(cgpa);
+    public void setCgpa(String degree) {
+        setSubtitle(degree);
     }
 
     public String getYear() {
-        return getYear();
+        return getPassYear();
     }
 
     public void setYear(String year) {
-        setCourse(year);
+        setPassYear(year);
     }
 
 }

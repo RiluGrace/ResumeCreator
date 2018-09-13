@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.rilu.resumecreator.PojoClass.ResumeEvent;
 import com.rilu.resumecreator.R;
@@ -32,6 +34,7 @@ public class ResumeEventAdapter<T extends ResumeEvent>
     public ResumeEventAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.single_item, parent, false);
+
         ResumeEventAdapterViewHolder viewHolder =
                 new ResumeEventAdapterViewHolder(itemView, mResumeEventOnClickListener);
         updateViewHolder(viewHolder);
@@ -61,10 +64,10 @@ public class ResumeEventAdapter<T extends ResumeEvent>
     public void onBindViewHolder(ResumeEventAdapterViewHolder holder, int position) {
         ResumeEvent event = list.get(position);
         holder.itemView.setTag(position);
-        holder.institute.setText(event.getInstitute());
-        holder.course.setText(event.getCourse());
-        holder.cgpa.setText(event.getCgpa());
-        holder.year.setText(event.getYear());
+        holder.institute.setText(event.getTitle());
+        holder.course.setText(event.getDetail());
+        holder.cgpa.setText(event.getSubtitle());
+        holder.year.setText(event.getPassYear());
     }
 
     @Override

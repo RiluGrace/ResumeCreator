@@ -6,6 +6,6 @@
         android:id="@+id/action_add"
         app:showAsAction="always"
         android:orderInCategory="1"
-        android:icon="@drawable/add_icon"
+        android:icon="@drawable/plusicon"
         android:title="@string/add" />
 </menu>

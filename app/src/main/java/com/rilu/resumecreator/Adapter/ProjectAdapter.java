@@ -7,9 +7,9 @@ import com.rilu.resumecreator.PojoClass.Education;
 
 import java.util.List;
 
-public class ProjectAdapter  extends ResumeEventAdapter<Education> {
+public class ProjectAdapter /* extends ResumeEventAdapter<Education>*/ {
 
-    public ProjectAdapter(@NonNull List<Education> list,
+  /*  public ProjectAdapter(@NonNull List<Education> list,
                            ResumeEventOnClickListener resumeEventOnClickListener) {
         super(list, resumeEventOnClickListener);
     }
@@ -17,5 +17,5 @@ public class ProjectAdapter  extends ResumeEventAdapter<Education> {
     @Override
     protected void updateViewHolder(ResumeEventAdapterViewHolder viewHolder) {
         viewHolder.course.setVisibility(View.GONE);
-    }
+    }*/
 }
